@@ -5,6 +5,7 @@
     <title>Teste de Estudo</title>
   </head>
   <body>
+    <h1>Teste Cadastro</h1>
     <form class="cadastro" action="validateFront" method="post">
       <input type="text" id="nome" name="nome" placeholder="Digite seu nome aqui..."><br>
       <input type="text" id="email" name="email" placeholder="Digite seu email aqui..."><br>
