@@ -25,12 +25,12 @@
                         <form action="validateBack.php" method="POST">
                             <div class="field">
                                 <div class="control">
-                                    <input name="usuario" type="text" class="input is-large" placeholder="Seu usuário" autofocus="">
+                                    <input name="email" type="text" class="input is-large" placeholder="Digite seu email..." autofocus="">
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="control">
-                                    <input name="senha" class="input is-large" type="password" placeholder="Sua senha">
+                                    <input name="senha" class="input is-large" type="password" placeholder="Digite sua senha">
                                 </div>
                             </div>
                             <button type="submit" class="button is-block is-link is-large is-fullwidth">Entrar</button>
@@ -44,3 +44,8 @@
 </body>
 
 </html>
+
+<?php
+    isset($_POST['email']);
+    isset($_POST['senha']);
+?>

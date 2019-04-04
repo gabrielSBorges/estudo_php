@@ -48,6 +48,11 @@
                                     <input name="senha" class="input is-large" type="password" placeholder="Digite sua senha..." maxlength="15">
                                 </div>
                             </div>
+                            <div class="field">
+                                <div class="control">
+                                    <input name="cinfirmarSenha" class="input is-large" type="password" placeholder="Confirme sua senha..." maxlength="15">
+                                </div>
+                            </div>
                             <button type="submit" class="button is-block is-link is-large is-fullwidth">Entrar</button>
                         </form><br>
                         <a href="index.php">Entrar com usuário e senha</a>
@@ -56,6 +61,15 @@
             </div>
         </div>
     </section>
+<?php
+    isset($_POST['nome']) {
+        $nome = addcslashes($_POST['nome']);
+        $email = addcslashes($_POST['email']);
+        $cpf = addcslashes($_POST['cpf']);
+        $corFav = addcslashes($_POST['corFav']);
+        $confirmarSenha = addcslashes($_POST['confirmarSenha']);
+    }
+?>
 </body>
 
 </html>
