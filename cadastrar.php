@@ -1,3 +1,8 @@
+<?php
+    require_once 'php/classes/Usuario.php';
+    $user = new Usuario;
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -22,7 +27,7 @@
                       <p>ERRO: Usuário ou senha inválidos.</p>
                     </div>
                     <div class="box">
-                        <form action="validateBack.php" method="POST">
+                        <form method="POST">
                             <div class="field">
                                 <div class="control">
                                     <input name="nome" class="input is-large" type="text" placeholder="Digite seu nome..." autofocus="" maxlength="30">
@@ -40,7 +45,7 @@
                             </div>
                             <div class="field">
                                 <div class="control">
-                                    <input name="corFav" class="input is-large" type="text" placeholder="Sua cor favorita (hexadecimal)..." maxlength="7">
+                                    <input name="cor_fav" class="input is-large" type="text" placeholder="Sua cor favorita (hexadecimal)..." maxlength="7">
                                 </div>
                             </div>
                             <div class="field">
@@ -50,7 +55,7 @@
                             </div>
                             <div class="field">
                                 <div class="control">
-                                    <input name="cinfirmarSenha" class="input is-large" type="password" placeholder="Confirme sua senha..." maxlength="15">
+                                    <input name="confirmarSenha" class="input is-large" type="password" placeholder="Confirme sua senha..." maxlength="15">
                                 </div>
                             </div>
                             <button type="submit" class="button is-block is-link is-large is-fullwidth">Entrar</button>
@@ -61,13 +66,35 @@
             </div>
         </div>
     </section>
+
+<!-- Validate e envio -->
 <?php
-    isset($_POST['nome']) {
-        $nome = addcslashes($_POST['nome']);
-        $email = addcslashes($_POST['email']);
-        $cpf = addcslashes($_POST['cpf']);
-        $corFav = addcslashes($_POST['corFav']);
-        $confirmarSenha = addcslashes($_POST['confirmarSenha']);
+    if (isset($_POST['nome'])) {
+        $nome = addslashes($_POST['nome']);
+        $email = addslashes($_POST['email']);
+        $cpf = addslashes($_POST['cpf']);
+        $cor_fav = addslashes($_POST['cor_fav']);
+        $senha = addslashes($_POST['senha']);
+        $confirmarSenha = addslashes($_POST['confirmarSenha']);
+
+        if(!empty($nome) && !empty($email) && !empty($cpf) && !empty($cor_fav) && !empty($confirmarSenha)){
+            $user->conectar("db_testephp", "localhost", "root", "");
+            if ($user->msgErro == "" || $user->msgErro == "undefined") {
+                if ($senha == $confirmarSenha) {
+                    if ($user->cadastrar($nome, $email, $cpf, $cor_fav, $senha)) {
+                        echo "Cadastrado com sucesso!";
+                    } else {
+                        echo "Email já cadastrado!";
+                    }
+                } else {
+                    echo "Você não digitou senhas iguais.";
+                }
+            } else {
+                echo "Erro: ".$user->msgErro;
+            }
+        } else {
+            echo "Preencha todos os campos!";
+        }
     }
 ?>
 </body>
