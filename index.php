@@ -1,3 +1,8 @@
+<?php
+    require_once 'php/classes/Usuario.php';
+    $user = new Usuario;
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -22,7 +27,7 @@
                       <p>ERRO: Usuário ou senha inválidos.</p>
                     </div>
                     <div class="box">
-                        <form action="validateBack.php" method="POST">
+                        <form action="./php/validateBack.php" method="POST">
                             <div class="field">
                                 <div class="control">
                                     <input name="email" type="text" class="input is-large" placeholder="Digite seu email..." autofocus="">
@@ -46,6 +51,21 @@
 </html>
 
 <?php
-    isset($_POST['email']);
-    isset($_POST['senha']);
+    $email = isset($_POST['email']);
+    $senha = isset($_POST['senha']);
+
+    if(!empty($email) && !empty($senha)){
+        $user->conectar("db_testephp", "localhost", "root", "");
+        if ($user->msgErro() == "" || $user->msgErro() == "undefined") {
+            if($user -> logar($email, $senha)) {
+                header('./paths/areaPrivada.php');
+            } else {
+                echo "Email ou senha inválidos";
+            }
+        } else {
+            echo "Erro na conexão com o banco. Erro: ".$user->msgErro();
+        }
+    } else {
+        echo "Preencha todos os campos!";
+    }
 ?>

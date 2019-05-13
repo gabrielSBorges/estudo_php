@@ -27,7 +27,7 @@
                       <p>ERRO: Usuário ou senha inválidos.</p>
                     </div>
                     <div class="box">
-                        <form method="POST">
+                        <form action="./php/validateBack.php" method="POST">
                             <div class="field">
                                 <div class="control">
                                     <input name="nome" class="input is-large" type="text" placeholder="Digite seu nome..." autofocus="" maxlength="30">
@@ -79,7 +79,7 @@
 
         if(!empty($nome) && !empty($email) && !empty($cpf) && !empty($cor_fav) && !empty($confirmarSenha)){
             $user->conectar("db_testephp", "localhost", "root", "");
-            if ($user->msgErro == "" || $user->msgErro == "undefined") {
+            if ($user->msgErro() == "" || $user->msgErro() == "undefined") {
                 if ($senha == $confirmarSenha) {
                     if ($user->cadastrar($nome, $email, $cpf, $cor_fav, $senha)) {
                         echo "Cadastrado com sucesso!";
@@ -90,7 +90,7 @@
                     echo "Você não digitou senhas iguais.";
                 }
             } else {
-                echo "Erro: ".$user->msgErro;
+                echo "Erro: ".$user->msgErro();
             }
         } else {
             echo "Preencha todos os campos!";
