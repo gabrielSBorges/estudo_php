@@ -56,14 +56,14 @@
 
     if(!empty($email) && !empty($senha)){
         $user->conectar("db_testephp", "localhost", "root", "");
-        if ($user->msgErro() == "" || $user->msgErro() == "undefined") {
+        if ($user->msgErro == "" || $user->msgErro == "undefined") {
             if($user -> logar($email, $senha)) {
                 header('./paths/areaPrivada.php');
             } else {
                 echo "Email ou senha inválidos";
             }
         } else {
-            echo "Erro na conexão com o banco. Erro: ".$user->msgErro();
+            echo "Erro na conexão com o banco. Erro: ".$user->msgErro;
         }
     } else {
         echo "Preencha todos os campos!";
