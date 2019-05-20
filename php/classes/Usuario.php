@@ -19,8 +19,9 @@
           global $pdo;
           global $msgErro;
           //verificacao do email:
-          $sql = $pdo->prepare("SELECT id FROM users WHERE email = '$email'");
-         
+          $sql = $pdo->prepare("SELECT id FROM users WHERE email = :e");
+          $sql->bindValue(":e", $email);
+
           $sql->execute();
           if ($sql->rowCount() > 0) {
               return false;
