@@ -36,7 +36,8 @@ CREATE TABLE `users` (
   `nome` varchar(30) NOT NULL,
   `email` varchar(40) NOT NULL,
   `cpf` varchar(11) NOT NULL,
-  `cor_fav` varchar(6) NOT NULL
+  `cor_fav` varchar(6) NOT NULL,
+  `senha` varchar(35) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
