@@ -21,7 +21,7 @@
                         <p>ERRO: Usuário ou senha inválidos.</p>
                         </div>
                         <div class="box">
-                            <form action="./php/validateBack.php" method="POST">
+                            <form method="POST">
                                 <div class="field">
                                     <div class="control">
                                         <input name="nome" class="input is-large" type="text" placeholder="Digite seu nome..." autofocus="" maxlength="30">
@@ -62,3 +62,8 @@
         </section>
     </body>
 </html>
+
+<?php
+    $msg = "teste";
+    header("location: ./php/validateBack.php?msg=$msg");
+?>
